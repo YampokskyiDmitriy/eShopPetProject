@@ -1,0 +1,10 @@
+﻿@model MVC.ViewModels.Admin.BrandListPageViewModel
+
+@foreach(var item in Model.Brands)
+{
+	<a
+	asp-controller="Admin" asp-action="BrandUpdatePage"
+	asp-route-id=@item.Id>
+	@item.Brand
+</a>
+}

@@ -1,0 +1,16 @@
+﻿@model MVC.ViewModels.Admin.BrandUpdatePageViewModel
+
+<form asp-controller="Admin" asp-action="BrandUpdate" method="post">
+	<input name="Id" type="hidden" value=@Model.Brand.Id />
+	<label>
+		<p>Id: @Model.Brand.Id</p>
+    </label>
+	<label>
+		Name: <input name="Name" type="text" value="@Model.Brand.Brand" ></input>
+    </label>
+	<p><input type="submit" value="send" /> </p>
+</form>
+<form asp-controller="Admin" asp-action="RemoveBrand"
+	asp-route-id=@Model.Brand.Id method="post">
+	<p><input type="submit" value="Delete" /> </p>
+</form> 

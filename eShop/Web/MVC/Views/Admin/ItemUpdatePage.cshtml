@@ -1,0 +1,36 @@
+﻿@model MVC.ViewModels.Admin.ItemUpdatePageViewModel
+
+<form asp-controller="Admin" asp-action="ItemUpdate" method="post">
+	<input name="Id" type="hidden" value=@Model.Item.Id />
+	<label>
+		Id: @Model.Item.Id
+    </label>
+	<label>
+		Name: <input name="Name" type="text" value="@Model.Item.Name" ></input>
+    </label>
+	<label>
+		Price: <input name="Price"  min="0" type="number" value="@Model.Item.Price" ></input>
+    </label>
+	<label>
+		Description: <input name="Description" type="text" value="@Model.Item.Description" ></input>
+    </label>
+	<label>
+		Brand: <select asp-for="@Model.BrandApplied" asp-items="@Model.Brands" value="@Model.Item.CatalogBrand.Id"></select>
+    </label>
+	<label>
+		Type: <select asp-for="@Model.TypeApplied" asp-items="@Model.Types" value="@Model.Item.CatalogType.Id"></select>
+    </label>
+	<label>
+		Picture file name: <input name="PictureFileName" type="text" value="@Model.PictureFileName" ></input>
+    </label>
+	<label>
+		Available Stock: <input min="0" name="AvailableStock" type="number" value="@Model.Item.AvailableStock" ></input>
+    </label>
+	<input name="BrandApplied" type="hidden" value=@Model.BrandApplied />
+	<input name="TypeApplied" type="hidden" value=@Model.TypeApplied />
+	<p><input type="submit" value="send" /> </p>
+</form>
+<form asp-controller="Admin" asp-action="RemoveItem"
+	asp-route-id=@Model.Item.Id method="post">
+	<p><input type="submit" value="Delete" /> </p>
+</form> 

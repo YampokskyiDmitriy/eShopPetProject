@@ -1,0 +1,10 @@
+﻿@model MVC.ViewModels.Admin.TypeListPageViewModel
+
+@foreach(var item in Model.Types)
+{
+	<a
+	asp-controller="Admin" asp-action="TypeUpdatePage"
+	asp-route-id=@item.Id>
+	@item.Type
+</a>
+}

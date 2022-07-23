@@ -1,0 +1,16 @@
+﻿@model MVC.ViewModels.Admin.TypeUpdatePageViewModel
+
+<form asp-controller="Admin" asp-action="TypeUpdate" method="post">
+	<input name="Id" type="hidden" value=@Model.Type.Id />
+	<label>
+		<p>Id: @Model.Type.Id</p>
+    </label>
+	<label>
+		Name: <input name="Name" type="text" value="@Model.Type.Type" ></input>
+    </label>
+	<p><input type="submit" value="send" /> </p>
+</form>
+<form asp-controller="Admin" asp-action="RemoveType"
+	asp-route-id=@Model.Type.Id method="post">
+	<p><input type="submit" value="Delete" /> </p>
+</form> 

@@ -1,0 +1,32 @@
+﻿@model MVC.ViewModels.Admin.AddItemPageViewModel
+
+<form asp-controller="Admin" asp-action="AddItem" method="post">
+
+	<label>
+		Name: <input name="Name" type="text"></input>
+    </label>
+	<label>
+		Price: <input name="Price" min="0" type="number"></input>
+    </label>
+	<label>
+		Description: <input name="Description" type="text"></input>
+    </label>
+	<label>
+		Brand: <select asp-for="@Model.CatalogBrandId" asp-items="@Model.Brands" value="@Model.Brands.First()" ></select>
+    </label>
+	<label>
+		Type: <select asp-for="@Model.CatalogTypeId" asp-items="@Model.Types" value="@Model.Types.First()" ></select>
+    </label>
+	<label>
+		Picture file name: <input name="PictureFileName" type="text" ></input>
+    </label>
+	<label>
+		Available Stock: <input min="0" name="AvailableStock" type="number" ></input>
+    </label>
+
+	<input name="CatalogBrandId" type="hidden" value="@Model.CatalogBrandId" />
+
+	<input name="CatalogTypeId" type="hidden" value="@Model.CatalogTypeId" />
+
+	<p><input type="submit" value="send" /></p>
+</form>
