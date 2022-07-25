@@ -5,31 +5,40 @@
 	<label>
 		Id: @Model.Item.Id
     </label>
+	<br />
 	<label>
 		Name: <input name="Name" type="text" value="@Model.Item.Name" ></input>
     </label>
+	<br />
 	<label>
 		Price: <input name="Price"  min="0" type="number" value="@Model.Item.Price" ></input>
     </label>
+	<br />
 	<label>
 		Description: <input name="Description" type="text" value="@Model.Item.Description" ></input>
     </label>
+	<br />
 	<label>
 		Brand: <select asp-for="@Model.BrandApplied" asp-items="@Model.Brands" value="@Model.Item.CatalogBrand.Id"></select>
     </label>
+	<br />
 	<label>
 		Type: <select asp-for="@Model.TypeApplied" asp-items="@Model.Types" value="@Model.Item.CatalogType.Id"></select>
     </label>
+	<br />
 	<label>
 		Picture file name: <input name="PictureFileName" type="text" value="@Model.PictureFileName" ></input>
     </label>
+	<br />
 	<label>
 		Available Stock: <input min="0" name="AvailableStock" type="number" value="@Model.Item.AvailableStock" ></input>
     </label>
+	<br />
 	<input name="BrandApplied" type="hidden" value=@Model.BrandApplied />
 	<input name="TypeApplied" type="hidden" value=@Model.TypeApplied />
 	<p><input type="submit" value="send" /> </p>
 </form>
+<br />
 <form asp-controller="Admin" asp-action="RemoveItem"
 	asp-route-id=@Model.Item.Id method="post">
 	<p><input type="submit" value="Delete" /> </p>

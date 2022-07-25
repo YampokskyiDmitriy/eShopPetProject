@@ -1,0 +1,20 @@
+﻿@model MVC.ViewModels.Components.RatingComponentViewModel
+
+@{
+
+    var list = new List<Comment>(Model.Comments);
+    double rating = 0;
+    if(list.Count != 0)
+    {
+        foreach(var item in list)
+        {
+            rating += item.Rate;
+        }
+        rating = rating / list.Count;
+        rating = Math.Round(rating, 2);
+    }
+}
+
+<small class="text-warning">
+   Rating: @rating
+</small>

@@ -26,7 +26,7 @@ namespace Comments.Host.Data
             {
                 ProductId = 1,
                 Rate = 4,
-                Commentary = "Test 1, Test 1, Test 1, Test 1, Test 1, Test 1",
+                Commentary = "Impressive reading",
                 UserId = 88421113,
                 UserName = "Bob Smith"
             },
@@ -34,7 +34,7 @@ namespace Comments.Host.Data
             {
                 ProductId = 2,
                 Rate = 5,
-                Commentary = "Test 2, Test 2, Test 2, Test 2, Test 2, Test 2",
+                Commentary = "Fantastic",
                 UserId = 88421113,
                 UserName = "Bob Smith"
             },
@@ -42,7 +42,7 @@ namespace Comments.Host.Data
             {
                 ProductId = 3,
                 Rate = 1,
-                Commentary = "Test 3, Test 3, Test 3, Test 3, Test 3, Test 3",
+                Commentary = "To weak expect more",
                 UserId = 88421113,
                 UserName = "Bob Smith"
             },
@@ -50,7 +50,7 @@ namespace Comments.Host.Data
             {
                 ProductId = 4,
                 Rate = 2,
-                Commentary = "Test 4, Test 4, Test 4, Test 4, Test 4, Test 4",
+                Commentary = "I will not recomend this for my friends",
                 UserId = 88421113,
                 UserName = "Bob Smith"
             }

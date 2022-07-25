@@ -1,5 +1,6 @@
 using System.Threading;
 using Catalog.Host.Data.Entities;
+using Catalog.Host.Data.Enums;
 using Catalog.Host.Models.Dtos;
 using Catalog.Host.Models.Response;
 
@@ -22,7 +23,7 @@ public class CatalogServiceTest
         _logger = new Mock<ILogger<CatalogService>>();
 
         var dbContextTransaction = new Mock<IDbContextTransaction>();
-        _dbContextWrapper.Setup(s => s.BeginTransactionAsync(It.IsAny<CancellationToken>())).ReturnsAsync(dbContextTransaction.Object);
+        _dbContextWrapper.Setup(s => s.BeginTransactionAsync(CancellationToken.None)).ReturnsAsync(dbContextTransaction.Object);
 
         _catalogService = new CatalogService(_dbContextWrapper.Object, _logger.Object, _catalogItemRepository.Object, _mapper.Object);
     }
@@ -61,13 +62,14 @@ public class CatalogServiceTest
             It.Is<int>(i => i == testPageIndex),
             It.Is<int>(i => i == testPageSize),
             It.IsAny<int?>(),
-            It.IsAny<int?>())).ReturnsAsync(pagingPaginatedItemsSuccess);
+            It.IsAny<int?>(),
+            It.Is<CatalogTypeSorting?>(i => i == CatalogTypeSorting.NameAsc))).ReturnsAsync(pagingPaginatedItemsSuccess);
 
         _mapper.Setup(s => s.Map<CatalogItemDto>(
             It.Is<CatalogItem>(i => i.Equals(catalogItemSuccess)))).Returns(catalogItemDtoSuccess);
 
         // act
-        var result = await _catalogService.GetCatalogItemsAsync(testPageSize, testPageIndex, null);
+        var result = await _catalogService.GetCatalogItemsAsync(testPageSize, testPageIndex, null, CatalogTypeSorting.NameAsc);
 
         // assert
         result.Should().NotBeNull();
@@ -88,10 +90,61 @@ public class CatalogServiceTest
             It.Is<int>(i => i == testPageIndex),
             It.Is<int>(i => i == testPageSize),
             It.IsAny<int?>(),
-            It.IsAny<int?>())).Returns((Func<PaginatedItemsResponse<CatalogItemDto>>)null!);
+            It.IsAny<int?>(),
+            It.IsAny<CatalogTypeSorting?>())).Returns((Func<PaginatedItemsResponse<CatalogItemDto>>)null!);
 
         // act
-        var result = await _catalogService.GetCatalogItemsAsync(testPageSize, testPageIndex, null);
+        var result = await _catalogService.GetCatalogItemsAsync(testPageSize, testPageIndex, null, null);
+
+        // assert
+        result.Should().BeNull();
+    }
+
+    [Fact]
+    public async Task GetByIdAsync_Success()
+    {
+        // arrange
+        var testId = 1;
+
+        var catalogItem = new CatalogItem()
+        {
+            Name = "TestName"
+        };
+
+        var catalogItemDto = new CatalogItemDto()
+        {
+            Name = "TestName"
+        };
+
+        _catalogItemRepository.Setup(s => s.GetByIdAsync(
+            It.Is<int>(i => i == testId)))
+            .ReturnsAsync(catalogItem);
+
+        _mapper.Setup(s => s.Map<CatalogItemDto>(
+            It.Is<CatalogItem>(i => i.Equals(catalogItem))))
+            .Returns(catalogItemDto);
+
+        // act
+        var result = await _catalogService.GetByIdAsync(testId);
+
+        // assert
+        result.Should().NotBeNull();
+        result.Should().Be(catalogItemDto);
+    }
+
+    [Fact]
+    public async Task GetByIdAsync_Failed()
+    {
+        // arrange
+        var testId = 1;
+        CatalogItem? testItem = null;
+
+        _catalogItemRepository.Setup(s => s.GetByIdAsync(
+            It.Is<int>(i => i == testId)))
+            .ReturnsAsync(testItem);
+
+        // act
+        var result = await _catalogService.GetByIdAsync(testId).ConfigureAwait(false);
 
         // assert
         result.Should().BeNull();

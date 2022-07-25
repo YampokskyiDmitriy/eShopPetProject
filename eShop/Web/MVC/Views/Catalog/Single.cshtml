@@ -28,6 +28,8 @@
         <small class="text-muted">
             Article: @Model.Item.Id
         </small>
+        <br />
+        @await Component.InvokeAsync("RatingComponent", new { id = Model.Item.Id })
         <h4 class="my-4">
             USD
             <span id="price">@Model.Item.Price</span>
@@ -150,7 +152,7 @@
                     aria-controls="collapseFour"
                 >
                     <strong>
-                        Type/Brand
+                        Comments section
                     </strong>
                 </button>
                 </h2>

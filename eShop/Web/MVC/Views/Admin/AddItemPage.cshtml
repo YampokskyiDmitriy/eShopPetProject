@@ -5,25 +5,31 @@
 	<label>
 		Name: <input name="Name" type="text"></input>
     </label>
+	<br />
 	<label>
 		Price: <input name="Price" min="0" type="number"></input>
     </label>
+	<br />
 	<label>
 		Description: <input name="Description" type="text"></input>
     </label>
+	<br />
 	<label>
 		Brand: <select asp-for="@Model.CatalogBrandId" asp-items="@Model.Brands" value="@Model.Brands.First()" ></select>
     </label>
+	<br />
 	<label>
 		Type: <select asp-for="@Model.CatalogTypeId" asp-items="@Model.Types" value="@Model.Types.First()" ></select>
     </label>
+	<br />
 	<label>
 		Picture file name: <input name="PictureFileName" type="text" ></input>
     </label>
+	<br />
 	<label>
 		Available Stock: <input min="0" name="AvailableStock" type="number" ></input>
     </label>
-
+	<br />
 	<input name="CatalogBrandId" type="hidden" value="@Model.CatalogBrandId" />
 
 	<input name="CatalogTypeId" type="hidden" value="@Model.CatalogTypeId" />

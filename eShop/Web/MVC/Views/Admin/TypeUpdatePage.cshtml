@@ -5,11 +5,14 @@
 	<label>
 		<p>Id: @Model.Type.Id</p>
     </label>
+	<br />
 	<label>
 		Name: <input name="Name" type="text" value="@Model.Type.Type" ></input>
     </label>
+	<br />
 	<p><input type="submit" value="send" /> </p>
 </form>
+<br />
 <form asp-controller="Admin" asp-action="RemoveType"
 	asp-route-id=@Model.Type.Id method="post">
 	<p><input type="submit" value="Delete" /> </p>

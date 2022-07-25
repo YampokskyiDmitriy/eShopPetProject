@@ -6,7 +6,7 @@
 
         <IsPackable>false</IsPackable>
         <CodeAnalysisRuleSet>../../settings.ruleset</CodeAnalysisRuleSet>
-        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     </PropertyGroup>
 
     <ItemGroup>
